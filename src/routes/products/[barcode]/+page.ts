@@ -11,7 +11,8 @@ import {
 	type Category,
 	type Origin,
 	type Country,
-	createProductsApi
+	createProductsApi,
+	createRobotoffApi
 } from '$lib/api';
 
 import { createFolksonomyApi, isConfigured as isFolksonomyConfigured } from '$lib/api/folksonomy';
@@ -71,6 +72,24 @@ function handleProductApiError(apiErrorWrapped: ProductStateResponse | null | un
 	});
 }
 
+async function getLogos(barcode: string, fetch: typeof window.fetch) {
+	try {
+		const robotoff = createRobotoffApi(fetch);
+		const response = await robotoff.searchLogos({ barcode });
+		const logos = response.data?.logos?.map((logo: Record<string, any>) => ({
+			logo_id: logo.logo_id || logo.id,
+			image_url: logo.image_url || logo.crop_data?.image_url,
+			type: logo.type,
+			value: logo.value,
+			confidence: logo.confidence
+		})) || [];
+		return logos;
+	} catch (err) {
+		console.error('Error fetching logos:', err);
+		return [];
+	}
+}
+
 export const load: PageLoad = async ({ params, fetch }) => {
 	const productsApi = createProductsApi(fetch);
 	const folkApi = createFolksonomyApi(fetch);
@@ -118,6 +137,8 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		return attributesToDefaultPreferences(attributeGroupsList);
 	})();
 
+	const logos = await getLogos(params.barcode, fetch);
+
 	return {
 		state,
 		defaultProductPreferences: await defaultPreferences,
@@ -131,6 +152,8 @@ export const load: PageLoad = async ({ params, fetch }) => {
 			countries,
 			origins
 		},
-		prices: await pricesResponse
+		prices: await pricesResponse,
+		logos,
+		logoCount: logos.length
 	};
 };
