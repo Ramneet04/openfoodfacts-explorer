@@ -126,7 +126,7 @@
 			{#if displayedError}
 				<div class="alert alert-error mb-6">
 					<IconMdiAlert class="h-6 w-6 shrink-0" />
-					<div>
+				<div>
 						<h3 class="font-bold">Error</h3>
 						<div class="text-xs">{displayedError}</div>
 					</div>

@@ -40,6 +40,7 @@
 			origins: Promise<Taxonomy<Origin>>;
 		};
 	};
+	
 	let { product, logoCount = 0, taxonomies }: Props = $props();
 
 	let { lang } = $derived($preferences);

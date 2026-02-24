@@ -16,6 +16,7 @@ async function getLogos(barcode: string, fetch: typeof window.fetch) {
 					logo.source_image
 						? `${PUBLIC_IMAGES_URL}/images/products${logo.source_image}`
 						: undefined;
+						
 				return {
 					logo_id: logo.id,
 					image_url,

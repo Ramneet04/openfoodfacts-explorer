@@ -9,7 +9,7 @@ export const load: PageLoad = async ({ parent }) => {
 			logoCount: parentData.logoCount ?? 0
 		};
 	} catch (error) {
-		console.error('Error loading logos page:', error);
+		console.error('Error in Loading logos page:', error);
 
 		return {
 			barcode: '',

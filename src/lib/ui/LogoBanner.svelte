@@ -1,7 +1,6 @@
 <script lang="ts">
 	import IconMdiAlert from '@iconify-svelte/mdi/alert';
 	import IconMdiChevronRight from '@iconify-svelte/mdi/chevron-right';
-
 	interface Props {
 		logoCount: number;
 		barcode: string;

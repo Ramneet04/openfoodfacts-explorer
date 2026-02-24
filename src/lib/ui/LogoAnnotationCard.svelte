@@ -50,7 +50,6 @@
 
 <Card>
 	<div class="flex flex-col h-full">
-		<!-- Image Section -->
 		<div class="mb-4 overflow-hidden rounded-lg bg-base-200 h-48">
 			{#if logo.image_url}
 				<img
@@ -65,7 +64,6 @@
 			{/if}
 		</div>
 
-		<!-- Metadata Section -->
 		<div class="mb-4 space-y-2">
 			{#if logo.type}
 				<div>
@@ -98,7 +96,6 @@
 			{/if}
 		</div>
 
-		<!-- Annotation Section -->
 		<div class="space-y-3 border-t border-base-300 pt-4 mt-auto">
 			<div>
 				<label for="annotation-{logo.logo_id}" class="mb-2 block text-xs font-semibold">
