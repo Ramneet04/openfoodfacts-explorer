@@ -46,9 +46,9 @@
 	async function getProducts() {
 		const roffApi = createRobotoffApi(fetch);
 		const { data: robotoffData } = await roffApi.insights({ count: INSIGHT_COUNT });
-
 		const insights = robotoffData?.insights ?? [];
-
+		console.log("datatattatattatata",insights);
+		
 		const productsPromises = insights.map((question) =>
 			getProductReducedForCard(fetch, question.barcode.toString())
 		);
